@@ -1,3 +1,15 @@
 <h1>hello</h1>
-
+<div/>
+<table>
+    <tr>
+        <% @pokemons.each do |pokemon|%>
+            <td>
+                <%= pokemon.name %> 
+            </td>
+            <td>
+                <%= pokemon_basexp_to_btc(pokemon.base_experience) %> 
+            </td>
+        <% end %>
+    </tr>
+</table>
 <%= button_to "logout", destroy_user_session_path, method: :delete  %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_27_195313) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_27_204909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_27_195313) do
     t.string "name"
     t.integer "base_experience"
     t.string "sprite"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.string "type"
+    t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,6 +46,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_27_195313) do
     t.text "pokemons"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
+  add_foreign_key "wallets", "users"
 end

@@ -51,9 +51,11 @@ gem 'bootsnap', require: false
 gem 'devise'
 
 gem 'httparty' # Makes http fun again! Ain't no party like a httparty, because a httparty don't stop.
+gem 'tailwindcss-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'byebug'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 end
 

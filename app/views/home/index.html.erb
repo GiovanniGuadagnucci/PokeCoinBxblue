@@ -1,15 +1,61 @@
-<h1>hello</h1>
-<div/>
-<table>
-    <tr>
-        <% @pokemons.each do |pokemon|%>
-            <td>
-                <%= pokemon.name %> 
-            </td>
-            <td>
-                <%= pokemon_basexp_to_btc(pokemon.base_experience) %> 
-            </td>
-        <% end %>
-    </tr>
-</table>
+<h1>Hello to PokeCoin!</h1>
+
+<%= @current_user.email %>
+<%= @wallet.balance %>
+<%= @bitcoin_value %>
+<p id="notice"><%= notice %></p>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <th scope="col" class="px-6 py-3"> Pokemon </th>
+            <th scope="col" class="px-6 py-3"> Operation </th>
+            <th scope="col" class="px-6 py-3"> Operation Value </th>
+        </thead>
+        <tbody>
+            <% @transactions.each do |transaction|%>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"> <%= transaction.pokemon.name %> </th>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"> <%= transaction.operation %> </th>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"> <%= transaction.value %> </th>
+                <tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="relative overflow-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400 h-32">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <th scope="col" class="px-6 py-3"> Pokemon </th>
+            <th scope="col" class="px-6 py-3"> Value in Bitcoins </th>
+            <th scope="col" class="px-6 py-3"> Values in USD </th>
+            <th scope="col" class="px-6 py-3"> Operations </th>
+        </thead>
+        <div class="max-h-96">
+            <tbody>
+                <% @pokemons.each do |pokemon|%>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"><%= pokemon.name %> <%= image_tag(pokemon.sprite) %> </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"> BIT <%= pokemon_basexp_to_btc(pokemon.base_experience) %> </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"> USD <%= pokemon_btc_value_to_usd(@bitcoin_value, pokemon.base_experience) %> </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"> 
+                        <%= button_to "Buy",
+                            buy_pokemon_path,
+                            method: :post, 
+                            params: {transaction: {pokemon: pokemon, amount: 1, value: pokemon_btc_value_to_usd(@bitcoin_value, pokemon.base_experience)}}
+                        %> 
+                        <%= button_to "Sell",
+                            sell_pokemon_path,
+                            method: :post, 
+                            params: {transaction: {pokemon: pokemon, amount: 1, value: pokemon_btc_value_to_usd(@bitcoin_value, pokemon.base_experience)}}
+                        %> 
+                        </th>
+                    </tr>
+                <% end %>
+            </tbody>
+        </div>
+    </table>
+</div>
 <%= button_to "logout", destroy_user_session_path, method: :delete  %>

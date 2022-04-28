@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_one :wallet
+  has_one :wallet, dependent: :destroy
   after_create :create_wallet
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

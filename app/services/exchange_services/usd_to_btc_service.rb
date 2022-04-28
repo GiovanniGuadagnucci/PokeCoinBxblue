@@ -8,6 +8,8 @@ module ExchangeServices
       request
     end
 
+    private
+
     def request
       HTTParty.get("https://blockchain.info/tobtc?currency=USD&value=#{@value}")
     end

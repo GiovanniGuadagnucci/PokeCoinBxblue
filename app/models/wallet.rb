@@ -1,4 +1,5 @@
 class Wallet < ApplicationRecord
-  belongs_to :user, dependent: :destroy
-  serialize :pokemons
+  belongs_to :user
+  has_many :transactions, dependent: :destroy
+  serialize :pokemons, Hash
 end

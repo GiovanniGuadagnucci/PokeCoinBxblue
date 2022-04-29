@@ -16,6 +16,6 @@ the entire project was created and developed in Ruby on Rails 7 and deployed on 
 
 - create an api version for third-party consumption, preferably in graphql (because this technology is amazing)
 
-- change the front end to a more interesting framework like react or vue
+- change the front end to a more interesting framework like react or vue, or at least implement hotwire and turbolink
 
 - implement new features such as: buy more than one pokemon at a time, graphical presentation of the wallet's history, more detailed transactions.

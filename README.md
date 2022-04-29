@@ -14,6 +14,8 @@ the entire project was created and developed in Ruby on Rails 7 and deployed on 
 
 - migrate the database to mongodb when rails 7 becomes compatible, in order to increase the flexibility of the app
 
+- create jobs and action cable to update the info on home page
+
 - create an api version for third-party consumption, preferably in graphql (because this technology is amazing)
 
 - change the front end to a more interesting framework like react or vue, or at least implement hotwire and turbolink
@@ -21,3 +23,5 @@ the entire project was created and developed in Ruby on Rails 7 and deployed on 
 - implement new features such as: buy more than one pokemon at a time, graphical presentation of the wallet's history, more detailed transactions, change pokemons values by  rarity/level, make some pokemons unique.
 
  - add new and more engaging features, like evolving pokemons to improve you investment (ex: every 3 pokemons of the same type you can choose to evolve it), pokemon battle to steal other pokemons.
+
+

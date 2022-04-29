@@ -12,6 +12,6 @@ class HomeController < ApplicationController
   private
 
   def current_bitcoin_value
-    @bitcoin_value = ExchangeServices::BtcToUsdService.call * 4
+    @bitcoin_value = ExchangeServices::BtcToUsdService.call
   end
 end

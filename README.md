@@ -1,24 +1,21 @@
-# README
+# PokeCoin Bxblue
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+this project simulates a portfolio of investments based on pokemons in NFT model
 
-Things you may want to cover:
+You can buy and sell first generation pokemons (the one that really matters), track the profit and loss of your investments and see the history of your transactions.
 
-* Ruby version
+The pokemon data was created from PokeApi in version 2 (https://pokeapi.co/).
 
-* System dependencies
+The value of Pokemon in bitcoins is equivalent to 0.00000001 BTC per experience point.
 
-* Configuration
+the entire project was created and developed in Ruby on Rails 7 and deployed on Heroku (https://bx-blue-pokecoin.herokuapp.com/)
 
-* Database creation
+## TODO's for improvement
 
-* Database initialization
+- migrate the database to mongodb when rails 7 becomes compatible, in order to increase the flexibility of the app
 
-* How to run the test suite
+- create an api version for third-party consumption, preferably in graphql (because this technology is amazing)
 
-* Services (job queues, cache servers, search engines, etc.)
+- change the front end to a more interesting framework like react or vue
 
-* Deployment instructions
-
-* ...
+- implement new features such as: buy more than one pokemon at a time, graphical presentation of the wallet's history, more detailed transactions.

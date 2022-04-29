@@ -51,6 +51,7 @@ gem 'bootsnap', require: false
 gem 'devise'
 
 gem 'httparty' # Makes http fun again! Ain't no party like a httparty, because a httparty don't stop.
+gem 'poke-api-v2'
 gem 'tailwindcss-rails'
 
 group :development, :test do
@@ -64,7 +65,6 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem 'poke-api-v2'
   gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]

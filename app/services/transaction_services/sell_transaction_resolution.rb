@@ -27,7 +27,8 @@ module TransactionServices
     end
 
     def remove_pokemon_from_wallet
-      @current_user.wallet.pokemons[@pokemon] -= @amount
+      @current_user.wallet.pokemons[@pokemon][:amount] -= @amount
+      @current_user.wallet.pokemons.delete(@pokemon) if @current_user.wallet.pokemons[@pokemon][:amount] == 0
       @current_user.wallet.save
     end
   end

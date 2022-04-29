@@ -1,0 +1,41 @@
+<div class="h2-holder">
+    <h2 class="text-2xl text-left"> Pokemons To Buy </h2>
+</div>
+
+<div class="relative overflow-auto shadow-md sm:rounded-lg" style = "max-height: 50vh">
+    <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400 h-32", style="height: 150px !important; overflow: auto !important;">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <th scope="col" class="px-6 py-3"> Pokemon </th>
+            <th scope="col" class="px-6 py-3"> Value in Bitcoin </th>
+            <th scope="col" class="px-6 py-3"> Values in USD </th>
+            <th scope="col" class="px-6 py-3"> Operations </th>
+        </thead>
+        <tbody>
+            <% @pokemons.each do |pokemon|%>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"><%= pokemon.name %> <%= image_tag(pokemon.sprite, class: "mx-auto") %> </th>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"> BTN <%= "%.8f" % pokemon.value_in_bitcoin %> </th>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"> USD $ <%= pokemon.value_in_dollar(@bitcoin_value).round(2) %> </th>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                        <div class="flex" style="justify-content: space-around;">
+                            <%= button_to "Buy",
+                                buy_pokemon_path,
+                                class: "mr-2 mb-2 rounded-lg bg-green-700 px-3 py-2 text-sm font-medium text-white hover:bg-green-800 focus:outline-none dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800",
+                                method: :post, 
+                                params: {transaction: {pokemon: pokemon, amount: 1, value: pokemon.value_in_dollar(@bitcoin_value)}}
+                            %>
+                            <% if @wallet.pokemons.include?(pokemon) %>
+                                <%= button_to "Sell",
+                                    sell_pokemon_path,
+                                    class: "mr-2 mb-2 rounded-lg bg-red-700 px-3 py-2 text-sm font-medium text-white hover:bg-red-800 focus:outline-none dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800",
+                                    method: :post, 
+                                    params: {transaction: {pokemon: pokemon, amount: 1, value: pokemon.value_in_dollar(@bitcoin_value)}}
+                                %>
+                            <% end %>
+                        </div>
+                    </th>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

@@ -4,10 +4,9 @@ class HomeController < ApplicationController
 
   def index
     @pokemons = Pokemon.all
-    @current_user = current_user
-    @transactions = current_user.wallet.transactions
     @wallet = current_user.wallet
-    @transactions = current_user.wallet.transactions
+    @transactions = current_user.wallet.transactions.reverse
+    @user_pokemons = current_user.wallet[:pokemons]
   end
 
   private

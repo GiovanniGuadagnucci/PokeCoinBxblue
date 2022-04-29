@@ -13,7 +13,7 @@ module TransactionServices
     private
 
     def can_sell?
-      return true if @wallet.pokemons.include?(@pokemon) && @wallet.pokemons[@pokemon] >= @amount
+      return true if @wallet.pokemons.include?(@pokemon) && @wallet.pokemons[@pokemon][:amount] >= @amount
 
       false
     end

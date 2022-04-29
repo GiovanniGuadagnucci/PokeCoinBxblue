@@ -10,6 +10,7 @@ module TransactionServices
     def call
       new_transaction
       payment
+      check_if_pokemon_is_in_wallet
       add_pokemon_to_wallet
     end
 
@@ -26,9 +27,18 @@ module TransactionServices
       @current_user.wallet.save
     end
 
+    def check_if_pokemon_is_in_wallet
+      unless @current_user.wallet.pokemons.key?(@pokemon)
+        @current_user.wallet.pokemons[@pokemon] = {
+          amount: 0,
+          total_paid_price: 0
+        }
+      end
+    end
+
     def add_pokemon_to_wallet
-      @current_user.wallet.pokemons[@pokemon] = 0 unless @current_user.wallet.pokemons.key?(@pokemon)
-      @current_user.wallet.pokemons[@pokemon] += @amount
+      @current_user.wallet.pokemons[@pokemon][:amount] += @amount
+      @current_user.wallet.pokemons[@pokemon][:total_paid_price] += @value
       @current_user.wallet.save
     end
   end

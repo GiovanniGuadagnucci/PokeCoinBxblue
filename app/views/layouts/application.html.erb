@@ -6,23 +6,24 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
   <nav class="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline w-full">
     <div class="mb-2 sm:mb-0">
-      <a href="/home" class="text-2xl no-underline text-grey-darkest hover:text-blue-dark">Home</a>
+      <p class="text-2xl no-underline text-grey-darkest hover:text-blue-dark">Welcome to PokeCoin</p>
     </div>
     <div>
-      <a href="/one" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2">One</a>
-      <a href="/two" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2">Two</a>
-      <a href="/three" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2">Three</a>
+      <% if current_user %>
+        <%= button_to "logout", destroy_user_session_path, method: :delete  %>
+      <% end %>
     </div>
   </nav>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body <% if !current_user %>
+            style="background-image: url(<%= image_url('background.jpg') %>)"
+        <% end %>>
+    <main class="container mx-auto mt-28 px-5 text-center">
       <%= yield %>
     </main>
   </body>

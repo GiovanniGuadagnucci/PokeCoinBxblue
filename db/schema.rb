@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_28_135019) do
 
   create_table "transactions", force: :cascade do |t|
     t.string "operation"
-    t.decimal "value", precision: 8, scale: 2
+    t.decimal "value", precision: 9, scale: 2
     t.integer "amount"
     t.text "pokemon"
     t.datetime "created_at", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_28_135019) do
   end
 
   create_table "wallets", force: :cascade do |t|
-    t.decimal "balance", precision: 8, scale: 2, default: "1000.0"
+    t.decimal "balance", precision: 9, scale: 2, default: "1000.0"
     t.text "pokemons"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

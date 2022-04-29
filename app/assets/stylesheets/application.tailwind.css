@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  
+  h2 {
+    @apply text-2xl mb-8
+  }
+}
+

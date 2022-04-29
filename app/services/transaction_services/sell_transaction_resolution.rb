@@ -1,10 +1,10 @@
 module TransactionServices
   class SellTransactionResolution < BxblueService
-    def initialize(pokemon, amount, value, current_user)
+    def initialize(pokemon, amount, value, wallet)
       @pokemon = Pokemon.find(pokemon)
       @amount = amount
       @value = value
-      @current_user = current_user
+      @wallet = wallet
     end
 
     def call
@@ -17,19 +17,20 @@ module TransactionServices
 
     def new_transaction
       transaction = Transaction.new(operation: 'sell', value: @value, amount: @amount,
-                                    wallet_id: @current_user.wallet.id, pokemon: @pokemon)
+                                    wallet_id: @wallet.id, pokemon: @pokemon)
       transaction.save
     end
 
     def receive_payment
-      @current_user.wallet.balance += @value * @amount
-      @current_user.wallet.save
+      @wallet.balance += @value * @amount
+      @wallet.save
     end
 
     def remove_pokemon_from_wallet
-      @current_user.wallet.pokemons[@pokemon][:amount] -= @amount
-      @current_user.wallet.pokemons.delete(@pokemon) if @current_user.wallet.pokemons[@pokemon][:amount] == 0
-      @current_user.wallet.save
+      @wallet.pokemons[@pokemon][:amount] -= @amount
+      @wallet.pokemons[@pokemon][:total_paid_price].pop
+      @wallet.pokemons.delete(@pokemon) if @wallet.pokemons[@pokemon][:amount] == 0
+      @wallet.save
     end
   end
 end

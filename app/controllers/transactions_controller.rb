@@ -8,7 +8,7 @@ class TransactionsController < ApplicationController
 
     return redirect_to root_url, notice: "You don't have enough funds to buy this pokemon" unless check_transaction
 
-    TransactionServices::BuyTransactionResolution.call(pokemon, amount, value, current_user)
+    TransactionServices::BuyTransactionResolution.call(pokemon, amount, value, wallet)
     redirect_to root_url, notice: 'Transaction successful'
   end
 
@@ -21,7 +21,7 @@ class TransactionsController < ApplicationController
 
     return redirect_to root_url, notice: "You don't have enough pokemon to sell" unless check_transaction
 
-    TransactionServices::SellTransactionResolution.call(pokemon, amount, value, current_user)
+    TransactionServices::SellTransactionResolution.call(pokemon, amount, value, wallet)
     redirect_to root_url, notice: 'Transaction successful'
   end
 

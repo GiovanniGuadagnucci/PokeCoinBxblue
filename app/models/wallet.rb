@@ -16,7 +16,7 @@ class Wallet < ApplicationRecord
 
   def wallet_avaluation_by_pokemon(wallet_pokemons, current_pokemon_value)
     avaluation = wallet_pokemons[:amount] * current_pokemon_value
-    percentage = (avaluation / wallet_pokemons[:total_paid_price] - 1) * 100
+    percentage = (avaluation / wallet_pokemons[:total_paid_price].reduce(:+) - 1) * 100
     {
       current_value: avaluation,
       percentage:

@@ -1,4 +1,9 @@
 class Pokemon < ApplicationRecord
+  validates :name, presence: true
+  validates :base_experience, presence: true
+  validates :sprite, presence: true
+
+
   def value_in_bitcoin
     base_experience * 0.00000001
   end

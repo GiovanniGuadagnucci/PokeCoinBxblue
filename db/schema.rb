@@ -15,18 +15,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_28_135019) do
   enable_extension "plpgsql"
 
   create_table "pokemons", force: :cascade do |t|
-    t.string "name"
-    t.integer "base_experience"
-    t.string "sprite"
+    t.string "name", null: false
+    t.integer "base_experience", null: false
+    t.string "sprite", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.string "operation"
-    t.decimal "value", precision: 9, scale: 2
-    t.integer "amount"
-    t.text "pokemon"
+    t.string "operation", null: false
+    t.decimal "value", precision: 9, scale: 2, null: false
+    t.integer "amount", null: false
+    t.text "pokemon", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "wallet_id", null: false

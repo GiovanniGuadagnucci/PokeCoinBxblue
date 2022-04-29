@@ -1,6 +1,8 @@
 module ExchangeServices
   class BtcToUsdService < BxblueService
-    def initialize; end
+    def initialize(api = 'https://blockchain.info/ticker');
+      @api = api
+    end
 
     def call
       request
@@ -9,7 +11,7 @@ module ExchangeServices
     private
 
     def request
-      response = HTTParty.get('https://blockchain.info/ticker')
+      response = HTTParty.get(@api)
       response['USD']['15m']
     end
   end

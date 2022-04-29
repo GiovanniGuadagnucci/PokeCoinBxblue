@@ -1,5 +1,7 @@
+<% if notice %>
+    <p class="text-left mb-8"><%= notice %></p>
+<% end %>
 
-<h3 class= "bg-blue" id="notice"><%= notice %></h3>
 <% avaluation = @wallet.wallet_total_avaluation_balance(@bitcoin_value) %>
 
 <div class="flex" style="justify-content: space-between;">
